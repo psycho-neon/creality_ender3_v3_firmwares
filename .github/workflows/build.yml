@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 permissions:
   contents: write
-  
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -20,25 +20,10 @@ jobs:
             - name: Set FIRMWARE_PWD environment variable
               run: sed -i "s/PWD_WRAPPER/${{ secrets.PASSWORD }}/g" create.sh
 
-            - name: Run creation script for V3
-              env:
-                FIRMWARE_PWD: ${{ secrets.PASSWORD }}
-                FIRMWARE_VERSION: ${{ secrets.V3_VERSION }}
-                FIRMWARE_LINK: ${{ secrets.V3_LINK }}
-              run: |
-                sudo chmod +x create.sh
-                export FIRMWARE_PASSWORD='${{ secrets.PASSWORD }}' FIRMWARE_VERSION='${{ secrets.V3_VERSION }}' FIRMWARE_LINK='${{ secrets.V3_LINK }}'
-                ./create.sh 
-                
             - name: Run creation script for V3 Plus
-              env:
-                FIRMWARE_PWD: ${{ secrets.PASSWORD }}
-                FIRMWARE_VERSION: ${{ secrets.V3PLUS_VERSION }}
-                FIRMWARE_LINK: ${{ secrets.V3PLUS_LINK }}
               run: |
                 sudo chmod +x create.sh
-                export FIRMWARE_PASSWORD='${{ secrets.PASSWORD }}' FIRMWARE_VERSION='${{ secrets.V3PLUS_VERSION }}' FIRMWARE_LINK='${{ secrets.V3PLUS_LINK }}'
-                ./create.sh 
+                ./create.sh
 
             - name: Upload
               uses: softprops/action-gh-release@v1

@@ -49,5 +49,5 @@ a new firmware image from the cli rather than relying on the display server
 
 ## Thanks
 
-pellcorp - for the ready-made script
-Guilouz - for the amazing helper script
+- pellcorp - for the ready-made script
+- Guilouz - for the amazing creality helper script
