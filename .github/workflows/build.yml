@@ -15,7 +15,7 @@ jobs:
                 repository: 'psycho-neon/creality_ender3_v3_firmwares'
 
             - name: Install dependencies
-              run: sudo apt install p7zip-full squashfs-tools wget mkpasswd
+              run: sudo apt install p7zip-full squashfs-tools wget whois
 
             - name: Set FIRMWARE_PWD environment variable
               run: sed -i "s/PWD_WRAPPER/${{ secrets.PASSWORD }}/g" create.sh
