@@ -42,8 +42,7 @@ function update_rootfs() {
     sudo chown $USER rootfs.squashfs
 }
 
-download=$(wget -q ${DOWNLOAD_PAGE} -O- | grep -o  "\"\(.*\)V${CREALITY_VERSION}.img\"" | head -1 | tr -d '"')
-old_image_name=$(basename $download)
+old_image_name=$(basename $DOWNLOAD_PAGE)
 board_name=$BOARD_SHORT_NAME
 old_directory="${board_name}_ota_img_V${CREALITY_VERSION}"
 old_sub_directory="ota_v${CREALITY_VERSION}"
@@ -52,8 +51,8 @@ sub_directory="ota_v${version}"
 image_name="${board_name}_ota_img_V${version}".img
 
 if [ ! -f /tmp/$old_image_name ]; then
-    echo "Downloading $download -> /tmp/$old_image_name ..."
-    wget "$download" -O /tmp/$old_image_name
+    echo "Downloading $DOWNLOAD_PAGE -> /tmp/$old_image_name ..."
+    wget "$DOWNLOAD_PAGE" -O /tmp/$old_image_name
 fi
 
 if [ -d /tmp/$old_directory ]; then
